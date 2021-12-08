@@ -1,1 +1,10 @@
-hi
+<script>
+  navigator
+    .mediaDevices
+    .enumerateDevices()
+    .then(
+      function(devices) {
+        console.log(devices);
+      }
+  );
+</script>
