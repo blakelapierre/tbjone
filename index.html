@@ -4,7 +4,11 @@
     .enumerateDevices()
     .then(
       function(devices) {
-        console.log(devices);
+        devices.forEach(function(device) {
+          const el = doument.createElement('div');
+          el.innerText = device.kind;
+          document.body.appendChild(el);
+        });
       }
   );
 </script>
