@@ -6,7 +6,7 @@
       function(devices) {
         devices.forEach(function(device) {
           if (device.kind === 'videoinput') {
-            const v = docuement.createElement('video');
+            const v = document.createElement('video');
             v.srcObject = device;
             document.body.apppendChild(v);
           }
