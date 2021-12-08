@@ -6,9 +6,15 @@
       function(devices) {
         devices.forEach(function(device) {
           if (device.kind === 'videoinput') {
-            const v = document.createElement('video');
-            v.srcObject = device;
-            document.body.apppendChild(v);
+            navigator
+              .mediaDevices
+              .getUserMedia({video:{ deviceId: device.deviceId }})
+              .then(
+                function(stream) {
+                  const v = document.createElement('video');
+                  v.srcObject = stream;
+                  document.body.apppendChild(v);
+                }
           }
           const el = document.createElement('div');
           el.innerText = device.kind;
