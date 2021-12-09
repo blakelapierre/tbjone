@@ -41,14 +41,14 @@ SOFTWARE.
               .then(
                 function(stream) {
                   const v = document.createElement('video');
-                  v.style.width = '100%';
-                  v.style.height = videoIndex / videoCount * 100 + '%';
+                  v.style.width = videoIndex / videoCount * 100 + '%';
+                  //v.style.height = videoIndex / videoCount * 100 + '%';
                   v.srcObject = stream;
                   v.onloadedmetadata = function() { v.play(); };
                   v.addEventListener('click', function(event) {
                     for (let i = 0; i < videos.length; i++) {
                       if (i === videoIndex) {
-                        v.style.height = undefined;
+                        v.style.width = '100%;
                         continue;
                       }
                       videos[i].remove();
