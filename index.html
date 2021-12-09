@@ -202,8 +202,8 @@
                             .then(function() {
                               const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
                               console.log(sdp);
-                              link.innerText = window.location.href + '#' + sdp;
-                              link.style.display = 'flex';
+                              linkEl.innerText = window.location.href + '#' + sdp;
+                              linkEl.style.display = 'flex';
                             });
                           
                         });
