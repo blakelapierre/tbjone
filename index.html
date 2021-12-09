@@ -188,7 +188,7 @@
                               return peer.setLocalDescription(offer);
                             })
                             .then(function() {
-                              console.log(JSON.stringify(peer.localDescription));
+                              console.log(LZString.compress(JSON.stringify(peer.localDescription.sdp)));
                             });
                           
                         });
