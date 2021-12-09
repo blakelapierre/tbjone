@@ -77,35 +77,38 @@
           function(devices) {
             let videoCount = 0;
             const videos = [];
-            devices.forEach(function(device) {
-              if (device.kind === 'videoinput') {
-                const videoIndex = videoCount++;
-                navigator
-                  .mediaDevices
-                  .getUserMedia({video:{ deviceId: device.deviceId }})
-                  .then(
-                    function(stream) {
-                      const v = E('video', undefined, videosEl);
-                      v.srcObject = stream;
-                      v.onloadedmetadata = function() { v.play(); };
-                      v.addEventListener('click', function(event) {
-                        for (let i = 0; i < videos.length; i++) {
-                          if (i === videoIndex) {
-                            v.style.width = '100%';
-                            continue;
+            devices.forEach(
+              function(device) {
+                if (device.kind === 'videoinput') {
+                  const videoIndex = videoCount++;
+                  navigator
+                    .mediaDevices
+                    .getUserMedia({video:{ deviceId: device.deviceId }})
+                    .then(
+                      function(stream) {
+                        const v = E('video', undefined, videosEl);
+                        v.srcObject = stream;
+                        v.onloadedmetadata = function() { v.play(); };
+                        v.addEventListener('click', function(event) {
+                          for (let i = 0; i < videos.length; i++) {
+                            if (i === videoIndex) {
+                              v.style.width = '100%';
+                              continue;
+                            }
+                            videos[i].remove();
                           }
-                          videos[i].remove();
-                        }
-                      });
-                      videos.push(v);
-                    }
-                  );
+                        });
+                        videos.push(v);
+                      }
+                    );
+                }
+                E('div', device.kind, statsEl);
               }
-              E('div', device.kind, statsEl);
-            });
+            );
 
             E('div', videoCount + ' camera(s) detected', containerEl);
-          });
+          }
+        );
     </script>
   </head>
   <body>
