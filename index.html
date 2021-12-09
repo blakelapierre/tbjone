@@ -110,6 +110,8 @@
         border: solid 0.25em #a00;
         
         font-weight: bold;
+        
+        cursor: pointer;
       }
       
       end:hover {
@@ -120,7 +122,8 @@
   </head>
   <body>
     <script>
-      document.body.innerText = '';
+      let videoCount = 0;
+      const videos = [];
       function E(type, text, parent) {
         const el = document.createElement(type || 'div');
         if (text) el.innerText = text;
@@ -141,8 +144,6 @@
         .enumerateDevices()
         .then(
           function(devices) {
-            let videoCount = 0;
-            const videos = [];
             devices.forEach(
               function(device) {
                 if (device.kind === 'videoinput') {
