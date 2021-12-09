@@ -219,7 +219,7 @@
                                 peer.setLocalDescription(answer);
                               })
                               .then(function() {
-                                const sdp = LZString.compressToEncodedURIComponent(peer.localDescription.sdp);
+                                const sdp = peer.localDescription.sdp;
                                 console.log(sdp);
                                 const connectLink = window.location.href + '#' + sdp;
                                 if (navigator.share) {
