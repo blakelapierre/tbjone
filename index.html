@@ -31,8 +31,18 @@ SOFTWARE.
     if (parent) parent.appendChild(el);
     return el;
   }
-  const statsEl = E('div', undefined, document.body);
-  const videosEl = E('div', undefined, document.body);
+  const containerEl = E('div', undefined, document.body);
+  containerEl.style.display = 'flex';
+  containerEl.style.position = 'absolute';
+  containerEl.style.top = 0;
+  containerEl.style.bottom = 0;
+  containerEl.style.left = 0;
+  containerEl.style.right = 0;
+  containerEl.style.flexDirection = 'column';
+  const statsEl = E('div', undefined, containerEl);
+  const videosEl = E('div', undefined, containerEl);
+  statsEl.style.flex = '1 1 auto';
+  videosEl.style.flex = '1 1 auto';
   navigator
     .mediaDevices
     .enumerateDevices()
@@ -69,7 +79,7 @@ SOFTWARE.
           E('div', device.kind, statsEl);
         });
         
-        E('div', videoCount + ' camera(s) detected', document.body);
+        E('div', videoCount + ' camera(s) detected', containerEl);
       }
   );
 </script>
