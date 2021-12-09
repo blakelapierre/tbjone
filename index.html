@@ -77,6 +77,14 @@
         align-items: center;
         align-content: stretch;
       }
+      video-container {
+        flex: 1 1 auto;
+        
+        max-width: 100%;
+        max-height: 100%;
+        
+        border: solid 1px #00a;
+      }
       video {
         flex: 1 1 auto;
         
@@ -141,7 +149,8 @@
                     .getUserMedia({video:{ deviceId: device.deviceId }})
                     .then(
                       function(stream) {
-                        const v = E('video', undefined, videosEl);
+                        const vc = E('video-container', undefined, videosEl);
+                        const v = E('video', undefined, vc);
                         v.srcObject = stream;
                         v.onloadedmetadata = function() { v.play(); };
                         v.addEventListener('click', function(event) {
@@ -153,7 +162,7 @@
                             videos[i].remove();
                           }
                         });
-                        videos.push(v);
+                        videos.push(vc);
                       }
                     );
                 }
