@@ -4,14 +4,18 @@
     .enumerateDevices()
     .then(
       function(devices) {
+        let videoCount = 0;
         devices.forEach(function(device) {
           if (device.kind === 'videoinput') {
+            const videoIndex = videoCount++;
             navigator
               .mediaDevices
               .getUserMedia({video:{ deviceId: device.deviceId }})
               .then(
                 function(stream) {
                   const v = document.createElement('video');
+                  v.style.width = '100%';
+                  v.style.height = videoIndex / videoCount * 100 + '%';
                   v.srcObject = stream;
                   v.onloadedmetadata = function() { v.play(); };
                   document.body.appendChild(v);
