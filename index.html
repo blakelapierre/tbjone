@@ -32,13 +32,15 @@
     <style>
       container {
         display: flex; 
-        flex-direction: auto;
+        flex-direction: column;
 
         position: fixed;
         left: 0; right: 0; top: 0; bottom: 0;
 
         padding: 0.25em;
         margin: 0;
+        
+        justify-content: space-between;
 
         background-color: #000;
         color: #fff;
@@ -48,7 +50,12 @@
         flex: 0 0 auto;
       }
       videos {
-        display: block;
+        display: flex;
+        flex: 1 1 auto;
+        
+        justify-content: space-around;
+      }
+      video {
         flex: 1 1 auto;
       }
     </style>
@@ -79,8 +86,6 @@
                   .then(
                     function(stream) {
                       const v = E('video', undefined, videosEl);
-                      v.style.width = videoIndex / videoCount * 100 + '%';
-                      //v.style.height = videoIndex / videoCount * 100 + '%';
                       v.srcObject = stream;
                       v.onloadedmetadata = function() { v.play(); };
                       v.addEventListener('click', function(event) {
@@ -100,8 +105,7 @@
             });
 
             E('div', videoCount + ' camera(s) detected', containerEl);
-          }
-      );
+          });
     </script>
   </head>
   <body>
