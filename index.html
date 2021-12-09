@@ -104,6 +104,17 @@
         max-height: 100%;
       }
       
+      link {
+        display: flex;
+        
+        justify-content: center;
+        align-items: center;
+        
+        white-space: pre-wrap;
+        
+        padding: 10%;
+      }
+      
       end {
         display: flex;
         padding: 1em;
@@ -147,6 +158,7 @@
       const containerEl = E('container', '', document.body);
       const noticeEl = E('notice', 'PICK A CAMERA', containerEl);
       const videosEl = E('videos', '', containerEl);
+      const linkEl = E('link', '', containerEl);
       const endEl = E('end', 'END', containerEl);
       endEl.addEventListener('click', function(event) {
         for (let i = 0; i < videos.length; i++) {
@@ -188,7 +200,9 @@
                               return peer.setLocalDescription(offer);
                             })
                             .then(function() {
-                              console.log(LZString.compress(JSON.stringify(peer.localDescription.sdp)));
+                              const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
+                              console.log(sdp);
+                              link.innerHtml = window.location.href + '#' + sdp;
                             });
                           
                         });
