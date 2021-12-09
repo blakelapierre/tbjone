@@ -134,7 +134,7 @@
   </head>
   <body>
     <script>
-      const peer = new RTCPeerConnection();
+      const peer = new RTCPeerConnection({iceServers:[{urls: 'stun:stun.stunprotocol.org'}]});
       
       let videoCount = 0;
       const videos = [];
