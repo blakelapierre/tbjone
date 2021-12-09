@@ -220,7 +220,7 @@
                                 peer.setLocalDescription(answer);
                               })
                               .then(function() {
-                                const sdp = peer.localDescription.sdp;
+                                const sdp = LZString.compressToBase64(peer.localDescription);
                                 console.log(sdp);
                                 const connectLink = window.location.href + '#' + sdp;
                                 if (navigator.share) {
