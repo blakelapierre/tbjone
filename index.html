@@ -32,7 +32,7 @@
     <style>
       container {
         display: flex; 
-        flex-direction: column;
+        flex-direction: row;
 
         position: fixed;
         left: 0; right: 0; top: 0; bottom: 0;
@@ -53,7 +53,7 @@
         display: flex;
         flex: 1 1 auto;
         
-        flex-direction: row;
+        flex-direction: column;
         
         justify-content: space-around;
       }
@@ -69,13 +69,19 @@
       document.body.innerHtml = '';
       function E(type, text, parent) {
         const el = document.createElement(type || 'div');
-        el.innerText = text;
+        el.innerHtml = text;
         if (parent) parent.appendChild(el);
         return el;
       }
-      const containerEl = E('container', undefined, document.body);
+      const containerEl = E('container', '', document.body);
       const statsEl = E('div', 'Media Devices', containerEl);
-      const videosEl = E('div', undefined, containerEl);
+      const videosEl = E('div', '', containerEl);
+      const endEl = E('end', 'END', containerEl);
+      endEl.addEventListener('click', function(event) {
+        for (let i = 0; i < videos.length; i++) {
+          try { videos[i].remove(); } catch (e) {}
+        }
+      });
       navigator
         .mediaDevices
         .enumerateDevices()
