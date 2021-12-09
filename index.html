@@ -104,7 +104,7 @@
         max-height: 100%;
       }
       
-      link {
+      connect-link {
         display: none;
         
         justify-content: center;
@@ -158,7 +158,7 @@
       const containerEl = E('container', '', document.body);
       const noticeEl = E('notice', 'PICK A CAMERA', containerEl);
       const videosEl = E('videos', '', containerEl);
-      const linkEl = E('link', '', containerEl);
+      const linkEl = E('connect-link', '', containerEl);
       const endEl = E('end', 'END', containerEl);
       endEl.addEventListener('click', function(event) {
         for (let i = 0; i < videos.length; i++) {
