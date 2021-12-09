@@ -53,6 +53,8 @@
         display: flex;
         flex: 1 1 auto;
         
+        flex-direction: row;
+        
         justify-content: space-around;
       }
       video {
@@ -64,7 +66,6 @@
     loading...
     
     <script>
-      alert('welcome!');
       document.body.innerHtml = '';
       function E(type, text, parent) {
         const el = document.createElement(type || 'div');
