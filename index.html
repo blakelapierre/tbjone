@@ -134,6 +134,8 @@
   </head>
   <body>
     <script>
+      const peer = new RTCPeerConnection();
+      
       let videoCount = 0;
       const videos = [];
       function E(type, text, parent) {
@@ -178,6 +180,14 @@
                             videos[i].remove();
                           }
                           noticeEl.remove();
+                          
+                          const sender = peer.addTrack(stream);
+                          peer
+                            .createOffer()
+                            .then(function(offer) {
+                              alert(peer.localDescription);
+                            });
+                          
                         });
                         videos.push(vc);
                       }
