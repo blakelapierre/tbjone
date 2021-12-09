@@ -188,7 +188,7 @@
                               return peer.setLocalDescription(offer);
                             })
                             .then(function() {
-                              alert(JSON.stringify(peer.localDescription));
+                              alert(LZUTF8.compress(JSON.stringify(peer.localDescription)));
                             });
                           
                         });
