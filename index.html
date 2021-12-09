@@ -44,7 +44,9 @@
         justify-content: space-between;
 
         background-color: #000;
-        color: #fff;
+        color: #0f0;
+        
+        font-size: 2em;
       }
       stats {
         display: block;
@@ -64,12 +66,13 @@
       end {
         display: block;
         padding: 1em;
-        font-size: 2em;
         
         self-align: space-around;
         
         background-color: #f00;
         border: solid 0.25em #a00;
+        
+        font-weight: bold;
       }
       
       end:hover {
@@ -85,7 +88,7 @@
       document.body.innerHtml = '';
       function E(type, text, parent) {
         const el = document.createElement(type || 'div');
-        el.innerHtml = text;
+        el.innerText = text;
         if (parent) parent.appendChild(el);
         return el;
       }
