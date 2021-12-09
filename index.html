@@ -181,7 +181,7 @@
                           }
                           noticeEl.remove();
                           
-                          const sender = peer.addTrack(stream);
+                          stream.getTracks().forEach(function(track) { peer.addTrack(track, stream); });
                           peer
                             .createOffer()
                             .then(function(offer) {
