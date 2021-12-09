@@ -63,6 +63,10 @@ SOFTWARE.
           el.innerText = device.kind;
           document.body.appendChild(el);
         });
+        
+        const cameraCountEl = document.createElement('div');
+        cameraCountEl.innerText = videoCount + ' camera(s) detected';
+        document.body.appendChild(cameraCountEl);
       }
   );
 </script>
