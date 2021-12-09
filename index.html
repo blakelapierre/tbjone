@@ -50,17 +50,17 @@
         
         max-height: 100%;
       }
-      stats {
+      notice {
         display: flex;
         flex: 0 0 auto;
         
-        flex-direction: column;
+        padding: 0.5em;
       }
       videos {
         display: flex;
         flex: 1 1 auto;
         
-        flex-direction: column;
+        flex-direction: row;
         
         justify-content: space-evenly;
         align-items: center;
@@ -69,6 +69,7 @@
         flex: 1 1 auto;
         
         max-width: 100%;
+        max-height: 100%;
       }
       
       end {
@@ -106,7 +107,7 @@
         return el;
       }
       const containerEl = E('container', '', document.body);
-      const statsEl = E('stats', 'Media Devices', containerEl);
+      const noticeEl = E('notice', 'Pick a camera', containerEl);
       const videosEl = E('videos', '', containerEl);
       const endEl = E('end', 'END', containerEl);
       endEl.addEventListener('click', function(event) {
@@ -146,11 +147,8 @@
                       }
                     );
                 }
-                E('div', device.kind, statsEl);
               }
             );
-
-            E('div', videoCount + ' camera(s) detected', containerEl);
           }
         );
     </script>
