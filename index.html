@@ -112,7 +112,7 @@
         
         white-space: pre-wrap;
         
-        padding: 1em 20%;
+        padding: 0.75em 20%;
         
         font-size: 0.75em;
         
@@ -204,7 +204,7 @@
                           noticeEl.remove();
                           
                           if (window.location.hash !== '') {
-                            const desc = new RTCSessionDescription(window.location.hash.substring(1));
+                            const desc = new RTCSessionDescription(window.location.hash.substr(1));
                             peer
                               .setRemoteDescription(desc)
                               .then(function() {
