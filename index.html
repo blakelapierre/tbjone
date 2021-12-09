@@ -146,7 +146,7 @@
         for (let i = 0; i < videos.length; i++) {
           try { videos[i].remove(); } catch (e) {}
         }
-        document.body.innerText = 'THANK YOU!';
+        containerEl.innerText = 'THANK YOU!';
       });
       navigator
         .mediaDevices
