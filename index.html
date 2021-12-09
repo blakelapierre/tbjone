@@ -48,7 +48,6 @@ SOFTWARE.
               .getUserMedia({video:{ deviceId: device.deviceId }})
               .then(
                 function(stream) {
-                  const v = document.createElement('video');
                   const v = E('video', undefined, videosEl);
                   v.style.width = videoIndex / videoCount * 100 + '%';
                   //v.style.height = videoIndex / videoCount * 100 + '%';
