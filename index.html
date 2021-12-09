@@ -118,6 +118,11 @@
         
         max-height: 5em;
         overflow-y: auto;
+        
+        cursor: pointer;
+        
+        background-color: #aaf;
+        border: solid 1px #66f;
       }
       
       end {
@@ -163,7 +168,7 @@
       const containerEl = E('container', '', document.body);
       const noticeEl = E('notice', 'PICK A CAMERA', containerEl);
       const videosEl = E('videos', '', containerEl);
-      const linkEl = E('connect-link', '', containerEl);
+      const linkEl = E('connect-link', 'Add Person', containerEl);
       const endEl = E('end', 'END', containerEl);
       endEl.addEventListener('click', function(event) {
         for (let i = 0; i < videos.length; i++) {
@@ -207,7 +212,17 @@
                             .then(function() {
                               const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
                               console.log(sdp);
-                              linkEl.innerText = window.location.href + '#' + sdp;
+                              const connectLink = window.location.href + '#' + sdp;
+                              if (navigator.share) {
+                                linkEl.addEventListener('click', function(event) {
+                                  navigator.share({
+                                    title: 'Connect to me',
+                                    url: connectLink
+                                });
+                              }
+                              else {
+                                linkEl.innerText = connectLink;
+                              }
                               linkEl.style.display = 'flex';
                             });
                           
