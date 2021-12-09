@@ -204,7 +204,7 @@
                           noticeEl.remove();
                           
                           if (window.location.hash !== '') {
-                            const desc = new RTCSessionDescription(LZString.decompress(window.location.hash.substr(1)));
+                            const desc = new RTCSessionDescription(LZString.decompress(window.location.hash.substring(1)));
                             peer
                               .setRemoteDescription(desc)
                               .then(function() {
