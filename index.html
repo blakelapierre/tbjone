@@ -31,8 +31,8 @@ SOFTWARE.
     if (parent) parent.appendChild(el);
     return el;
   }
-  const statsEl = E('div', '', document.body);
-  const videosEl = E('div', '', document.body);
+  const statsEl = E('div', undefined, document.body);
+  const videosEl = E('div', undefined, document.body);
   navigator
     .mediaDevices
     .enumerateDevices()
