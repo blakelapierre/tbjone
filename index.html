@@ -105,14 +105,14 @@
       }
       
       link {
-        display: flex;
+        display: none;
         
         justify-content: center;
         align-items: center;
         
         white-space: pre-wrap;
         
-        padding: 10%;
+        padding: 1em 20%;
       }
       
       end {
@@ -202,7 +202,8 @@
                             .then(function() {
                               const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
                               console.log(sdp);
-                              link.innerHtml = window.location.href + '#' + sdp;
+                              link.innerText = window.location.href + '#' + sdp;
+                              link.style.display = 'flex';
                             });
                           
                         });
