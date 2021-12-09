@@ -204,7 +204,7 @@
                           noticeEl.remove();
                           
                           if (window.location.hash !== '') {
-                            const sdp = LZString.decompressFromEncodedURIComponent(window.location.hash.substring(1));
+                            const sdp = LZString.decompressFromBase64(window.location.hash.substring(1));
                             console.log(sdp);
                             const desc = new RTCSessionDescription(sdp);
                             peer
@@ -242,7 +242,7 @@
                                 return peer.setLocalDescription(offer);
                               })
                               .then(function() {
-                                const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
+                                const sdp = LZString.compressToBase64(peer.localDescription.sdp);
                                 console.log(sdp);
                                 const connectLink = window.location.href + '#' + sdp;
                                 if (navigator.share) {
