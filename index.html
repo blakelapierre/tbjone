@@ -203,30 +203,59 @@
                           }
                           noticeEl.remove();
                           
-                          stream.getTracks().forEach(function(track) { peer.addTrack(track, stream); });
-                          peer
-                            .createOffer()
-                            .then(function(offer) {
-                              return peer.setLocalDescription(offer);
-                            })
-                            .then(function() {
-                              const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
-                              console.log(sdp);
-                              const connectLink = window.location.href + '#' + sdp;
-                              if (navigator.share) {
-                                linkEl.addEventListener('click', function(event) {
+                          if (window.location.hash !== '') {
+                            const desc = new RTCSessionDescription(window.location.hash.substring(1));
+                            peer
+                              .setRemoteDescription(desc)
+                              .then(function() {
+                                stream.getTracks().forEach(function(track) { peer.addTrack(track, stream); });
+                              })
+                              .then(function() {
+                                return peer.createAnswer();
+                              })
+                              .then(function(answer) {
+                                peer.setLocalDescription(answer);
+                              })
+                              .then(function() {
+                                const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
+                                console.log(sdp);
+                                const connectLink = window.location.href + '#' + sdp;
+                                if (navigator.share) {
                                   navigator.share({
                                     title: 'Connect to me',
                                     url: connectLink
                                   });
-                                });
-                              }
-                              else {
-                                linkEl.innerText = connectLink;
-                              }
-                              linkEl.style.display = 'flex';
-                            });
-                          
+                                }
+                                else {
+                                  linkEl.innerText = connectLink;
+                                }
+                              });
+                          }
+                          else {
+                            stream.getTracks().forEach(function(track) { peer.addTrack(track, stream); });
+                            peer
+                              .createOffer()
+                              .then(function(offer) {
+                                return peer.setLocalDescription(offer);
+                              })
+                              .then(function() {
+                                const sdp = LZString.compress(JSON.stringify(peer.localDescription.sdp));
+                                console.log(sdp);
+                                const connectLink = window.location.href + '#' + sdp;
+                                if (navigator.share) {
+                                  linkEl.addEventListener('click', function(event) {
+                                    navigator.share({
+                                      title: 'Connect to me',
+                                      url: connectLink
+                                    });
+                                  });
+                                }
+                                else {
+                                  linkEl.innerText = connectLink;
+                                }
+                                linkEl.style.display = 'flex';
+                              });
+                          }
                         });
                         videos.push(vc);
                       }
