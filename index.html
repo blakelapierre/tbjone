@@ -112,7 +112,7 @@
       document.body.innerText = '';
       function E(type, text, parent) {
         const el = document.createElement(type || 'div');
-        el.innerText = text;
+        if (text) el.innerText = text;
         if (parent) parent.appendChild(el);
         return el;
       }
