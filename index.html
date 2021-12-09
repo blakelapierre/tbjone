@@ -31,6 +31,7 @@ SOFTWARE.
     .then(
       function(devices) {
         let videoCount = 0;
+        const videos = [];
         devices.forEach(function(device) {
           if (device.kind === 'videoinput') {
             const videoIndex = videoCount++;
@@ -44,6 +45,16 @@ SOFTWARE.
                   v.style.height = videoIndex / videoCount * 100 + '%';
                   v.srcObject = stream;
                   v.onloadedmetadata = function() { v.play(); };
+                  v.addEventListener('click', function(event) {
+                    for (let i = 0; i < videos.length; i++) {
+                      if (i === videoIndex) {
+                        v.style.height = undefined;
+                        continue;
+                      }
+                      videos[i].remove();
+                    }
+                  });
+                  videos.push(v);
                   document.body.appendChild(v);
                 }
               );
